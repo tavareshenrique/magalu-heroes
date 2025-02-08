@@ -54,7 +54,7 @@ export function FavoriteHeroes() {
   }
 
   return (
-    <div>
+    <div className="mt-8">
       <h1 className="text-xl font-extrabold text-sky-900 mb-6">Favorites</h1>
 
       <div className="overflow-hidden relative">
