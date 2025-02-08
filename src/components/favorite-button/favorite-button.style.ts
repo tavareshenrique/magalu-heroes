@@ -7,6 +7,8 @@ export const FavoriteButtonVariants = tv({
    h-11 w-11
    transform -translate-x-1/2 p-2
    rounded-xl
+   max-[1440px]:w-8 max-[1440px]:h-8
+   max-[1440px]:bottom-2
   `,
   variants: {
     isFavorite: {
