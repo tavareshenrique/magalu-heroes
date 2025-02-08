@@ -48,7 +48,7 @@ export default function HeroLayout({
         </div>
       </section>
 
-      <main className="md:px-14 md:mt-32 flex-1 mt-4 px-6">{children}</main>
+      <main className="md:px-14 md:mt-10 flex-1 mt-4 px-6">{children}</main>
     </div>
   );
 }
