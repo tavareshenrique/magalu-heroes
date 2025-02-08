@@ -12,9 +12,9 @@ export default function HeroLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-row h-screen">
-      <section className="md:w-[392px] bg-sky-550 h-full">
-        <div className="md:h-[241px] bg-sky-650 flex items-center justify-center">
+    <div className="md:flex-row md:h-screen flex flex-col">
+      <section className="md:w-[392px] md:bg-sky-550 h-full">
+        <div className="h-[241px] bg-sky-650 flex items-center justify-center">
           <Image
             src="/images/logo.svg"
             alt={ALT_TITLE}
@@ -25,7 +25,7 @@ export default function HeroLayout({
           />
         </div>
 
-        <div className="p-14">
+        <div className="md:block p-14 hidden">
           <h1 className="text-2xl font-extrabold text-white mb-6">Filters</h1>
 
           <div className="flex flex-col items-start space-y-2 mt-8">
@@ -48,7 +48,7 @@ export default function HeroLayout({
         </div>
       </section>
 
-      <main className="flex-1">{children}</main>
+      <main className="md:px-14 md:mt-32 flex-1 mt-4 px-6">{children}</main>
     </div>
   );
 }
