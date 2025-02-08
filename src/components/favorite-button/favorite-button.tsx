@@ -54,7 +54,7 @@ export function FavoriteButton({ hero }: FavoriteButtonProps) {
       className={`group ${FavoriteButtonVariants({ isFavorite: isHeroFavorite })}`}
       onClick={handleMarkAsFavorite}
     >
-      <div className="relative w-6 h-6">
+      <div className="max-[1440px]:w-4 max-[1440px]:h-4 relative w-6 h-6">
         <Image
           src="/images/fav-full.png"
           alt="A heart symbolizing the favorite button"
