@@ -71,3 +71,20 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+@layer utilities {
+  @keyframes explode {
+      0% { transform: scale(0.5) translate(0, 0); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: scale(1.5) translate(var(--x), var(--y)); opacity: 0; }
+  }
+
+  .explode {
+      animation: explode 1s ease-out infinite;
+  }
+
+  .explode-1 { --x: 20px; --y: -30px; animation-delay: 0s; }
+  .explode-2 { --x: -20px; --y: -40px; animation-delay: 0.1s; }
+  .explode-3 { --x: 30px; --y: 20px; animation-delay: 0.2s; }
+}
