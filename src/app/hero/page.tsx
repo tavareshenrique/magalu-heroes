@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { HeroProvider } from '@/context/HeroContext';
+
 import {
   Select,
   SelectContent,
@@ -19,7 +21,58 @@ import {
 } from '@/components/ui/pagination';
 
 import { FavoriteHeroes } from '@/components/favorite-heroes/favorite-heroes';
-import { HeroProvider } from '@/context/HeroContext';
+import { HeroCard } from '@/components/hero-card/hero-card';
+
+const heroes = [
+  {
+    id: 1,
+    name: 'Spider-Man',
+    description:
+      'Peter Parker is a high school student and a superhero with spider-like abilities.',
+    thumbnail: '/images/spider.jpg',
+    isFavorite: false,
+  },
+  {
+    id: 2,
+    name: 'Spider-Man',
+    description:
+      'Peter Parker is a high school student and a superhero with spider-like abilities.',
+    thumbnail: '/images/spider.jpg',
+    isFavorite: false,
+  },
+  {
+    id: 3,
+    name: 'Spider-Man',
+    description:
+      'Peter Parker is a high school student and a superhero with spider-like abilities.',
+    thumbnail: '/images/spider.jpg',
+    isFavorite: false,
+  },
+  {
+    id: 4,
+    name: 'Spider-Man',
+    description:
+      'Peter Parker is a high school student and a superhero with spider-like abilities.',
+    thumbnail: '/images/spider.jpg',
+    isFavorite: false,
+  },
+  {
+    id: 5,
+    name: 'Spider-Man',
+    description:
+      'Peter Parker is a high school student and a superhero with spider-like abilities.',
+    thumbnail: '/images/spider.jpg',
+    isFavorite: false,
+  },
+  {
+    id: 6,
+    name: 'Spider-Man',
+    description:
+      'Peter Parker is a high school student and a superhero with spider-like abilities.',
+    thumbnail: '/images/spider.jpg',
+    isFavorite: false,
+  },
+];
 
 export default function Home() {
   return (
@@ -55,10 +108,27 @@ export default function Home() {
 
         <div className="mt-8">
           <h1 className="text-xl font-extrabold text-sky-900 mb-6">All</h1>
+
+          <div className="relative">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {heroes.map((hero) => (
+                <HeroCard
+                  key={hero.id}
+                  hero={{
+                    id: String(hero.id),
+                    description: hero.description,
+                    name: hero.name,
+                    thumbnail: hero.thumbnail,
+                    isFavorite: hero.isFavorite,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </HeroProvider>
 
-      <div className="absolute bottom-0 right-7 left-0">
+      <div className="md:my-2 p-4 flex my-8">
         <Pagination>
           <PaginationContent>
             <PaginationItem>
