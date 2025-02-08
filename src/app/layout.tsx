@@ -1,16 +1,15 @@
-import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Nunito } from 'next/font/google';
+import './globals.css';
 
 const nunito = Nunito({
-  variable: "--font-nunito",
-  subsets: ["latin"],
+  variable: '--font-nunito',
+  subsets: ['latin'],
 });
 
-
 export const metadata: Metadata = {
-  title: "Magalu Heroes",
-  description: "Here you can find the best heroes from Marvel Universe",
+  title: 'Magalu Heroes',
+  description: 'Here you can find the best heroes from Marvel Universe',
 };
 
 export default function RootLayout({
@@ -20,9 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${nunito.variable} antialiased bg-blue-200`}
-      >
+      <body className={`${nunito.variable} antialiased bg-blue-200`}>
         {children}
       </body>
     </html>
