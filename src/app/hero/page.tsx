@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import {
   Select,
   SelectContent,
@@ -7,7 +9,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import Image from 'next/image';
+
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination';
+
+import { FavoriteHeroes } from '@/components/favorite-heroes/favorite-heroes';
+import { HeroProvider } from '@/context/HeroContext';
 
 export default function Home() {
   return (
@@ -36,6 +48,27 @@ export default function Home() {
             height={24}
           />
         </button>
+      </div>
+
+      <HeroProvider>
+        <FavoriteHeroes />
+
+        <div className="mt-8">
+          <h1 className="text-xl font-extrabold text-sky-900 mb-6">All</h1>
+        </div>
+      </HeroProvider>
+
+      <div className="absolute bottom-0 right-7 left-0">
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </div>
   );
