@@ -3,9 +3,9 @@ import type { Config } from 'tailwindcss';
 export default {
   darkMode: ['class'],
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/templates/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -13,9 +13,6 @@ export default {
         sky: {
           '550': '#007CF9',
           '650': '#0272E4',
-        },
-        screens: {
-          'max-1440px': { max: '1440px' },
         },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
