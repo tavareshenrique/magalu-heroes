@@ -8,13 +8,15 @@ import {
   useState,
 } from 'react';
 
-import { Hero } from '@/components/hero-card/hero-card.types';
+import { Hero } from '@/types/global.types';
 
 interface IHeroContextType {
   favoriteHeroes: Hero[] | null;
   isLoadingFavoriteHeroes: boolean;
+  isBottomSheetFilterOpen: boolean;
   onAddFavoriteHero: (hero: Hero) => void;
   onRemoveFavoriteHero: (hero: Hero) => void;
+  handleToggleBottomSheetFilter: () => void;
 }
 
 interface IHeroProvider {
@@ -26,6 +28,11 @@ const HeroContext = createContext({} as IHeroContextType);
 export function HeroProvider({ children }: IHeroProvider) {
   const [favoriteHeroes, setFavoriteHeroes] = useState<Hero[] | null>(null);
   const [isLoadingFavoriteHeroes, setIsLoadingFavoriteHeroes] = useState(false);
+  const [isBottomSheetFilterOpen, setIsBottomSheetFilterOpen] = useState(false);
+
+  function handleToggleBottomSheetFilter() {
+    setIsBottomSheetFilterOpen((prev) => !prev);
+  }
 
   function onRemoveFavoriteHero(hero: Hero) {
     const favorites = favoriteHeroes?.filter(
@@ -73,8 +80,10 @@ export function HeroProvider({ children }: IHeroProvider) {
       value={{
         favoriteHeroes,
         isLoadingFavoriteHeroes,
+        isBottomSheetFilterOpen,
         onAddFavoriteHero,
         onRemoveFavoriteHero,
+        handleToggleBottomSheetFilter,
       }}
     >
       {children}
@@ -82,4 +91,4 @@ export function HeroProvider({ children }: IHeroProvider) {
   );
 }
 
-export const useFavoriteHeroes = () => useContext(HeroContext);
+export const useHeroes = () => useContext(HeroContext);
