@@ -4,25 +4,21 @@ import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
 
-import { useFavoriteHeroes } from '@/context/HeroContext';
-
-import { Hero } from '../hero-card/hero-card.types';
-
 import { FavoriteButtonVariants } from './favorite-button.style';
 
-interface FavoriteButtonProps {
-  hero: Hero;
-}
+import { FavoriteButtonProps } from './favorite-button.types';
 
-export function FavoriteButton({ hero }: FavoriteButtonProps) {
+export function FavoriteButton({
+  hero,
+  onAddFavoriteHero,
+  onRemoveFavoriteHero,
+}: FavoriteButtonProps) {
   const [isExploding, setIsExploding] = useState(false);
   const [isHeroFavorite, setIsHeroFavorite] = useState(
     hero.isFavorite ?? false,
   );
 
   const explodeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const { onAddFavoriteHero, onRemoveFavoriteHero } = useFavoriteHeroes();
 
   function handleMarkAsFavorite() {
     if (isHeroFavorite) {
