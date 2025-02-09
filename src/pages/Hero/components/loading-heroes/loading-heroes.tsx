@@ -1,4 +1,4 @@
-'use client'; // Necessário no Next.js 15 para componentes que usam `useState` e `useEffect`
+'use client';
 
 import Lottie from 'react-lottie-player';
 
