@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { useSearchParams } from 'next/navigation';
+
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import { fetchHeroes } from '@/repositories/fetch-heroes';
@@ -22,15 +24,20 @@ import { SortHeroes } from './components/sort-heroes/sort-heroes';
 import { LoadingHeroes } from './components/loading-heroes/loading-heroes';
 
 export function HeroPage() {
+  const searchParams = useSearchParams();
+
   const [page, setPage] = useState(0);
   const [orderBy, setOrderBy] = useState('name');
 
+  const heroName = searchParams?.get('heroName') || null;
+
   const { data, isLoading } = useQuery({
-    queryKey: ['heroes', page, orderBy],
+    queryKey: ['heroes', page, orderBy, heroName],
     queryFn: () =>
       fetchHeroes({
         page,
         orderBy,
+        byName: heroName,
       }),
     placeholderData: keepPreviousData,
   });
@@ -55,16 +62,22 @@ export function HeroPage() {
 
         <FavoriteHeroes />
 
-        <AllHeroes heroes={data} />
+        <AllHeroes heroes={data.heroes} />
 
         <div className="md:my-2 p-4 flex my-8">
           <Pagination className="cursor-pointer">
             <PaginationContent>
               <PaginationItem>
-                <PaginationPrevious onClick={() => setPage(page - 1)} />
+                <PaginationPrevious
+                  disabled={page === 0}
+                  onClick={() => setPage(page - 1)}
+                />
               </PaginationItem>
               <PaginationItem>
-                <PaginationNext onClick={() => setPage(page + 1)} />
+                <PaginationNext
+                  disabled={data.isLastPage}
+                  onClick={() => setPage(page + 1)}
+                />
               </PaginationItem>
             </PaginationContent>
           </Pagination>
