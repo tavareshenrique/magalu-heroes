@@ -9,7 +9,11 @@ import { FavoriteButton } from '../favorite-button/favorite-button';
 
 import { HeroCardProps } from './hero-card.types';
 
-export function HeroCard({ hero }: HeroCardProps) {
+export function HeroCard({
+  hero,
+  onAddFavoriteHero,
+  onRemoveFavoriteHero,
+}: HeroCardProps) {
   return (
     <div className="max-[1440px]:h-[112px] bg-gray-200 rounded-2xl h-[160px] w-full flex justify-center items-center">
       <div className="flex flex-row items-start justify-between h-full">
@@ -23,7 +27,11 @@ export function HeroCard({ hero }: HeroCardProps) {
             quality={100}
           />
 
-          <FavoriteButton hero={hero} />
+          <FavoriteButton
+            hero={hero}
+            onAddFavoriteHero={onAddFavoriteHero}
+            onRemoveFavoriteHero={onRemoveFavoriteHero}
+          />
         </div>
 
         <div className="flex flex-col py-4 flex-">

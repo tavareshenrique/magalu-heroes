@@ -1,11 +1,7 @@
-export type Hero = {
-  id: string;
-  name: string;
-  description: string;
-  thumbnail: string;
-  isFavorite?: boolean;
-};
+import { Hero } from '@/types/global.types';
 
 export interface HeroCardProps {
   hero: Hero;
+  onAddFavoriteHero: (hero: Hero) => void;
+  onRemoveFavoriteHero: (hero: Hero) => void;
 }
