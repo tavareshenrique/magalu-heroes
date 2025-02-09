@@ -1,10 +1,9 @@
 'use client';
 
-import React from 'react';
-
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useSearchParams, useRouter } from 'next/navigation';
 import * as z from 'zod';
 
 import { Label } from '@/components/ui/label';
@@ -19,6 +18,9 @@ export const filterSchema = z.object({
 });
 
 export function Filter() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -28,13 +30,26 @@ export function Filter() {
   } = useForm({
     resolver: zodResolver(filterSchema),
     defaultValues: {
-      heroName: '',
-      onlyFavorites: false,
+      heroName: searchParams?.get('heroName') || '',
+      onlyFavorites: searchParams?.get('onlyFavorites') === 'true',
     },
   });
 
+  useEffect(() => {
+    if (searchParams) {
+      setValue('heroName', searchParams.get('heroName') || '');
+      setValue('onlyFavorites', searchParams.get('onlyFavorites') === 'true');
+    }
+  }, [searchParams, setValue]);
+
   const onSubmit = (data: FilterValues) => {
-    console.log('Filter values:', data);
+    const params = new URLSearchParams();
+
+    if (data.heroName) params.set('heroName', data.heroName);
+    if (data.onlyFavorites)
+      params.set('onlyFavorites', String(data.onlyFavorites));
+
+    router.push(`?${params.toString()}`, { scroll: false });
   };
 
   return (
