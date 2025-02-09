@@ -23,8 +23,6 @@ export async function fetchHeroes({
 
   Object.assign(params, nameStartsWith);
 
-  console.log(params);
-
   const response = await api.get<HeroResponse>('/characters', {
     params,
   });
