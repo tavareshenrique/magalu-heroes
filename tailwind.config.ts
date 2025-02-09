@@ -14,6 +14,9 @@ export default {
           '550': '#007CF9',
           '650': '#0272E4',
         },
+        screens: {
+          'max-1440px': { max: '1440px' },
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
