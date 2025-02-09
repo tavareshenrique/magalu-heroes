@@ -4,13 +4,14 @@ import { makeFetchHeroes } from './factories/make-fetch-heroes';
 
 import { FetchHeroesParams, HeroResponse } from './types/fetch-heroes.types';
 
+const LIMIT_PER_PAGE = 6;
+
 export async function fetchHeroes({ page, orderBy }: FetchHeroesParams) {
-  const limit = 6;
-  const offset = page * limit;
+  const offset = page * LIMIT_PER_PAGE;
 
   const response = await api.get<HeroResponse>('/characters', {
     params: {
-      limit,
+      limit: LIMIT_PER_PAGE,
       offset,
       orderBy,
     },
