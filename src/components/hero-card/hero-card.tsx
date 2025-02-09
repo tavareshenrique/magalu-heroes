@@ -15,7 +15,7 @@ export function HeroCard({
   onRemoveFavoriteHero,
 }: HeroCardProps) {
   return (
-    <div className="max-[1440px]:h-[112px] bg-gray-200 rounded-2xl h-[160px] w-full flex justify-center items-center">
+    <div className="max-[1440px]:h-[112px] bg-gray-200 rounded-2xl h-[160px] w-full">
       <div className="flex flex-row items-start justify-between h-full">
         <div className="relative p-4 flex-shrink-0">
           <Image
@@ -34,12 +34,14 @@ export function HeroCard({
           />
         </div>
 
-        <div className="flex flex-col py-4 flex-">
+        <div className="flex flex-col py-4 flex-1">
           <h2 className="max-[1440px]:text-sm text-base font-bold">
             {hero.name}
           </h2>
           <p className="max-[1440px]:text-xs max-[1440px]:line-clamp-3 text-sm line-clamp-4">
-            {hero.description}
+            {hero.description
+              ? hero.description
+              : 'No description available...'}
           </p>
         </div>
 
