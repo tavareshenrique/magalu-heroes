@@ -2,16 +2,22 @@
 
 import { useState, useEffect } from 'react';
 
+import { useHeroes } from '@/context/HeroContext';
+
 import { Skeleton } from '../ui/skeleton';
 
 import { HeroCard } from '../hero-card/hero-card';
-import { useFavoriteHeroes } from '@/context/HeroContext';
 
 export function FavoriteHeroes() {
   const [scrollIndex, setScrollIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(3);
 
-  const { favoriteHeroes, isLoadingFavoriteHeroes } = useFavoriteHeroes();
+  const {
+    favoriteHeroes,
+    isLoadingFavoriteHeroes,
+    onAddFavoriteHero,
+    onRemoveFavoriteHero,
+  } = useHeroes();
 
   useEffect(() => {
     const updateItemsPerPage = () => {
@@ -72,13 +78,9 @@ export function FavoriteHeroes() {
             >
               <HeroCard
                 key={hero.id}
-                hero={{
-                  name: hero.name,
-                  description: hero.description,
-                  id: hero.id,
-                  thumbnail: hero.thumbnail,
-                  isFavorite: hero.isFavorite,
-                }}
+                hero={hero}
+                onAddFavoriteHero={onAddFavoriteHero}
+                onRemoveFavoriteHero={onRemoveFavoriteHero}
               />
             </div>
           ))}
