@@ -30,6 +30,7 @@ export function HeroPage() {
   const [orderBy, setOrderBy] = useState('name');
 
   const heroName = searchParams?.get('heroName') || null;
+  const onlyFavorites = searchParams?.get('onlyFavorites') ?? false;
 
   const { data, isLoading } = useQuery({
     queryKey: ['heroes', page, orderBy, heroName],
@@ -62,26 +63,32 @@ export function HeroPage() {
 
         <FavoriteHeroes />
 
-        <AllHeroes heroes={data.heroes} />
+        {!onlyFavorites && (
+          <>
+            <AllHeroes heroes={data.heroes} />
 
-        <div className="md:my-2 p-4 flex my-8">
-          <Pagination className="cursor-pointer">
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious
-                  disabled={page === 0}
-                  onClick={() => setPage(page - 1)}
-                />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationNext
-                  disabled={data.isLastPage}
-                  onClick={() => setPage(page + 1)}
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        </div>
+            <div className="md:my-2 p-4 flex my-8">
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious
+                      className="cursor-pointer disabled:cursor-not-allowed"
+                      disabled={page === 0}
+                      onClick={() => setPage(page - 1)}
+                    />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext
+                      className="cursor-pointer disabled:cursor-not-allowed"
+                      disabled={data.isLastPage}
+                      onClick={() => setPage(page + 1)}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+          </>
+        )}
 
         <FilterSheet />
       </div>

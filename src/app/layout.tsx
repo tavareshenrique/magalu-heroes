@@ -8,7 +8,10 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: 'Magalu Heroes',
+  title: {
+    default: 'Magalu Heroes',
+    template: '%s | Magalu Heroes',
+  },
   description: 'Here you can find the best heroes from Marvel Universe',
 };
 

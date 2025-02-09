@@ -87,24 +87,24 @@ export function FavoriteHeroes() {
         </div>
       </div>
 
-      {favoriteHeroes.length > itemsPerPage && (
-        <div className="flex justify-between mt-4">
-          <button
-            onClick={scrollLeft}
-            className="bg-blue-400 w-12 rounded-full text-white p-2 disabled:bg-gray-300"
-            disabled={scrollIndex === 0}
-          >
-            ←
-          </button>
-          <button
-            onClick={scrollRight}
-            className="bg-blue-400 w-12 text-white p-2 rounded-full disabled:bg-gray-300"
-            disabled={scrollIndex === favoriteHeroes.length - itemsPerPage}
-          >
-            →
-          </button>
-        </div>
-      )}
+      {/* {favoriteHeroes.length > itemsPerPage && ( */}
+      <div className="flex justify-between mt-4">
+        <button
+          onClick={scrollLeft}
+          className="bg-blue-400 w-12 rounded-full text-white p-2 disabled:bg-gray-300"
+          disabled={scrollIndex === 0}
+        >
+          ←
+        </button>
+        <button
+          onClick={scrollRight}
+          className="bg-blue-400 w-12 text-white p-2 rounded-full disabled:bg-gray-300"
+          disabled={scrollIndex === favoriteHeroes.length - itemsPerPage}
+        >
+          →
+        </button>
+      </div>
+      {/* )} */}
     </div>
   );
 }

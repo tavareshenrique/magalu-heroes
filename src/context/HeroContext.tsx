@@ -8,6 +8,13 @@ import {
   useState,
 } from 'react';
 
+import { useQueryClient } from '@tanstack/react-query';
+
+import {
+  addFavoriteHeroes,
+  getFavoriteHeroes,
+} from '@/utils/favoriteHeroesStorage';
+
 import { Hero } from '@/types/global.types';
 
 interface IHeroContextType {
@@ -26,6 +33,8 @@ interface IHeroProvider {
 const HeroContext = createContext({} as IHeroContextType);
 
 export function HeroProvider({ children }: IHeroProvider) {
+  const queryClient = useQueryClient();
+
   const [favoriteHeroes, setFavoriteHeroes] = useState<Hero[] | null>(null);
   const [isLoadingFavoriteHeroes, setIsLoadingFavoriteHeroes] = useState(false);
   const [isBottomSheetFilterOpen, setIsBottomSheetFilterOpen] = useState(false);
@@ -34,7 +43,7 @@ export function HeroProvider({ children }: IHeroProvider) {
     setIsBottomSheetFilterOpen((prev) => !prev);
   }
 
-  function onRemoveFavoriteHero(hero: Hero) {
+  async function onRemoveFavoriteHero(hero: Hero) {
     const favorites = favoriteHeroes?.filter(
       (favorite) => favorite.id !== hero.id,
     );
@@ -45,7 +54,9 @@ export function HeroProvider({ children }: IHeroProvider) {
 
     setFavoriteHeroes(favorites);
 
-    localStorage.setItem('@marvel:favorites', JSON.stringify(favorites));
+    addFavoriteHeroes(favorites);
+
+    await queryClient.invalidateQueries({ queryKey: ['heroes'], exact: false });
   }
 
   function onAddFavoriteHero(hero: Hero) {
@@ -53,17 +64,15 @@ export function HeroProvider({ children }: IHeroProvider) {
 
     setFavoriteHeroes(favorites);
 
-    localStorage.setItem('@marvel:favorites', JSON.stringify(favorites));
+    addFavoriteHeroes(favorites);
   }
 
   useEffect(() => {
     setIsLoadingFavoriteHeroes(true);
 
-    const storedData = localStorage.getItem('@marvel:favorites');
+    const favorites = getFavoriteHeroes();
 
-    if (storedData) {
-      const favorites = JSON.parse(storedData) as Hero[];
-
+    if (favorites.length > 0) {
       const favoriteHeroesParsed = favorites.map((favorite) => ({
         ...favorite,
         isFavorite: true,

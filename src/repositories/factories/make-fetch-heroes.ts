@@ -1,3 +1,5 @@
+import { checkIsFavorite } from '@/utils/favoriteHeroesStorage';
+
 import { Hero } from '@/types/global.types';
 import { HeroResponse } from '../types/fetch-heroes.types';
 
@@ -9,12 +11,18 @@ async function makeFetchHeroes(heroes: HeroResponse) {
   const parsedHeroes: Hero[] = heroes.data.results.map((hero) => {
     const { id, name, description, thumbnail } = hero;
 
+    const parsedId = id.toString();
+
+    const isFavorite = checkIsFavorite(parsedId);
+
+    const thumbnailPath = thumbnail.path + '.' + thumbnail.extension;
+
     return {
-      id: id.toString(),
+      id: parsedId,
       name,
       description,
-      thumbnail: thumbnail.path + '.' + thumbnail.extension,
-      isFavorite: false, // TODO: Implement favorite feature
+      thumbnail: thumbnailPath,
+      isFavorite,
     };
   });
 

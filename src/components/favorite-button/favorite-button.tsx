@@ -22,15 +22,16 @@ export function FavoriteButton({
 
   function handleMarkAsFavorite() {
     if (isHeroFavorite) {
+      setIsHeroFavorite(false);
       onRemoveFavoriteHero(hero);
 
       return;
     }
 
-    onAddFavoriteHero(hero);
-
     setIsExploding(true);
     setIsHeroFavorite(true);
+
+    onAddFavoriteHero(hero);
 
     explodeRef.current = setTimeout(() => {
       setIsExploding(false);

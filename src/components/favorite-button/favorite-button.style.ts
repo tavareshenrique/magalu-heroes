@@ -14,6 +14,7 @@ export const FavoriteButtonVariants = tv({
     isFavorite: {
       true: `
         bg-rose-300
+        hover:bg-gray-300
       `,
       false: `
         bg-gray-300
