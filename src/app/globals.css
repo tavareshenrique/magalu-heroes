@@ -87,4 +87,11 @@ body {
   .explode-1 { --x: 20px; --y: -30px; animation-delay: 0s; }
   .explode-2 { --x: -20px; --y: -40px; animation-delay: 0.1s; }
   .explode-3 { --x: 30px; --y: 20px; animation-delay: 0.2s; }
+
+  .line-clamp-9 {
+      display: -webkit-box;
+      -webkit-line-clamp: 12;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+  }
 }
