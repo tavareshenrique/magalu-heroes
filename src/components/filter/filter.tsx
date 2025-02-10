@@ -13,7 +13,7 @@ import { Switch } from '@/components/ui/switch';
 import { FilterValues } from './filter.types';
 
 export const filterSchema = z.object({
-  heroName: z.string().optional(),
+  characterName: z.string().optional(),
   onlyFavorites: z.boolean().optional(),
 });
 
@@ -30,43 +30,50 @@ export function Filter() {
   } = useForm({
     resolver: zodResolver(filterSchema),
     defaultValues: {
-      heroName: searchParams?.get('heroName') || '',
+      characterName: searchParams?.get('characterName') || '',
       onlyFavorites: searchParams?.get('onlyFavorites') === 'true',
     },
   });
 
   useEffect(() => {
     if (searchParams) {
-      setValue('heroName', searchParams.get('heroName') || '');
+      setValue('characterName', searchParams.get('characterName') || '');
       setValue('onlyFavorites', searchParams.get('onlyFavorites') === 'true');
     }
   }, [searchParams, setValue]);
 
-  const onSubmit = (data: FilterValues) => {
+  function onSubmit(data: FilterValues) {
     const params = new URLSearchParams();
 
-    if (data.heroName) params.set('heroName', data.heroName);
+    if (data.characterName) params.set('characterName', data.characterName);
     if (data.onlyFavorites)
       params.set('onlyFavorites', String(data.onlyFavorites));
 
     router.push(`?${params.toString()}`, { scroll: false });
-  };
+  }
+
+  function resetFilters() {
+    setValue('characterName', '');
+    setValue('onlyFavorites', false);
+
+    router.push(`?`, { scroll: false });
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col items-start space-y-2 mt-8">
-        <Label htmlFor="hero-name" className="text-white font-bold">
-          Hero Name:
+        <Label htmlFor="character-name" className="text-white font-bold">
+          Character Name:
         </Label>
         <Input
-          id="hero-name"
+          id="character-name"
           type="text"
-          placeholder="Tell me the hero's name..."
-          {...register('heroName')}
+          placeholder="Tell me the character name..."
+          {...register('characterName')}
         />
-        {errors.heroName && (
+        {errors.characterName && (
           <span className="text-red-500 text-sm">
-            {errors.heroName.message}
+            {errors.characterName.message}
           </span>
         )}
       </div>
@@ -82,12 +89,21 @@ export function Filter() {
         />
       </div>
 
-      <button
-        type="submit"
-        className="mt-6 bg-emerald-500 text-white font-bold py-2 px-4 rounded"
-      >
-        Apply Filters
-      </button>
+      <div className="flex flex-row items-start gap-2">
+        <button
+          type="submit"
+          className="mt-6 bg-emerald-500 text-white font-bold py-2 px-4 rounded"
+        >
+          Apply Filters
+        </button>
+        <button
+          type="button"
+          onClick={() => resetFilters()}
+          className="mt-6 bg-rose-500 text-white font-bold py-2 px-4 rounded"
+        >
+          Reset Filters
+        </button>
+      </div>
     </form>
   );
 }
