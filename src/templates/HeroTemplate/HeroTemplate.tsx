@@ -7,14 +7,12 @@ import { queryClient } from '@/lib/react-query';
 
 import { HeroProvider } from '@/context/HeroContext';
 
-import { HeroPage } from '@/pages/Hero/HeroPage';
+import { HeroTemplateProps } from './HeroTemplate.types';
 
-export function HeroTemplate() {
+export function HeroTemplate({ children }: HeroTemplateProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <HeroProvider>
-        <HeroPage />
-      </HeroProvider>
+      <HeroProvider>{children}</HeroProvider>
       <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
   );
