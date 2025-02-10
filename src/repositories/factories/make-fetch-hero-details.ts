@@ -2,11 +2,7 @@ import { checkIsFavorite } from '@/utils/favoriteHeroesStorage';
 
 import { Hero, HeroResponse } from '@/types/global.types';
 
-const isLastPage = (offset: number, count: number, total: number): boolean => {
-  return offset + count >= total;
-};
-
-async function makeFetchHeroes(heroes: HeroResponse) {
+async function makeFetchHeroDetails(heroes: HeroResponse) {
   const parsedHeroes: Hero[] = heroes.data.results.map((hero) => {
     const { id, name, description, thumbnail } = hero;
 
@@ -25,16 +21,9 @@ async function makeFetchHeroes(heroes: HeroResponse) {
     };
   });
 
-  const isLast = isLastPage(
-    heroes.data.offset,
-    heroes.data.count,
-    heroes.data.total,
-  );
-
   return {
-    heroes: parsedHeroes,
-    isLastPage: isLast,
+    hero: parsedHeroes[0],
   };
 }
 
-export { makeFetchHeroes };
+export { makeFetchHeroDetails };

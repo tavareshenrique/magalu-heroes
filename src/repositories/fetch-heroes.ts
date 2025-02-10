@@ -2,7 +2,9 @@ import { api } from '@/lib/api';
 
 import { makeFetchHeroes } from './factories/make-fetch-heroes';
 
-import { FetchHeroesParams, HeroResponse } from './types/fetch-heroes.types';
+import { HeroResponse } from '@/types/global.types';
+
+import { FetchHeroesParams } from './types/fetch-heroes.types';
 
 const LIMIT_PER_PAGE = 6;
 
