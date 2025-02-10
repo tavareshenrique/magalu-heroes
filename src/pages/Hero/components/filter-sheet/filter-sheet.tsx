@@ -24,6 +24,8 @@ export function FilterSheet() {
     <Sheet
       isOpen={isBottomSheetFilterOpen}
       onClose={handleToggleBottomSheetFilter}
+      aria-label="Filter"
+      aria-description="Filter the characters"
     >
       <Sheet.Backdrop className="bg-black/50" />
 
