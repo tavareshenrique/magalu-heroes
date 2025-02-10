@@ -39,9 +39,7 @@ export function HeroCard({
             {hero.name}
           </h2>
           <p className="max-[1440px]:text-xs max-[1440px]:line-clamp-3 text-sm line-clamp-4">
-            {hero.description
-              ? hero.description
-              : 'No description available...'}
+            {hero.description}
           </p>
         </div>
 
