@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
+
+import NextTopLoader from 'nextjs-toploader';
+
 import './globals.css';
 
 const nunito = Nunito({
@@ -23,6 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${nunito.variable} antialiased bg-blue-200`}>
+        <NextTopLoader height={5} color="#0272E4" />
+
         {children}
       </body>
     </html>
