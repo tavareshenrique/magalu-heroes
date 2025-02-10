@@ -1,5 +1,6 @@
 'use client';
 
+import { useQueryClient } from '@tanstack/react-query';
 import {
   createContext,
   ReactNode,
@@ -8,14 +9,11 @@ import {
   useState,
 } from 'react';
 
-import { useQueryClient } from '@tanstack/react-query';
-
+import { Hero } from '@/types/global.types';
 import {
   addFavoriteHeroes,
   getFavoriteHeroes,
 } from '@/utils/favoriteHeroesStorage';
-
-import { Hero } from '@/types/global.types';
 
 interface IHeroContextType {
   favoriteHeroes: Hero[] | null;

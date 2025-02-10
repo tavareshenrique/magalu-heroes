@@ -1,4 +1,4 @@
-import { type VariantProps, createTV } from 'tailwind-variants';
+import { createTV, type VariantProps } from 'tailwind-variants';
 
 export const tv = createTV({});
 

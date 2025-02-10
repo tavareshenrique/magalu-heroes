@@ -1,12 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useHeroes } from '@/context/HeroContext';
 
-import { Skeleton } from '../ui/skeleton';
-
 import { HeroCard } from '../hero-card/hero-card';
+import { Skeleton } from '../ui/skeleton';
 
 export function FavoriteHeroes() {
   const [scrollIndex, setScrollIndex] = useState(0);

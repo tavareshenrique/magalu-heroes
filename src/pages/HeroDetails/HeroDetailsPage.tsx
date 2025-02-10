@@ -1,23 +1,17 @@
 'use client';
 
-import { useEffect } from 'react';
-
+import { useQuery } from '@tanstack/react-query';
+import { ChevronLeft } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-
-import { useQuery } from '@tanstack/react-query';
-
-import { ChevronLeft } from 'lucide-react';
-
-import { fetchHeroDetails } from '@/repositories/fetch-hero-details';
-
-import { useHeroes } from '@/context/HeroContext';
+import { useEffect } from 'react';
 
 import { FavoriteButton } from '@/components/favorite-button/favorite-button';
+import { useHeroes } from '@/context/HeroContext';
+import { fetchHeroDetails } from '@/repositories/fetch-hero-details';
 
 import { AllComics } from './components/all-comics/all-comics';
 import { HeroDetailsSkeleton } from './components/hero-details-skeleton/hero-details-skeleton';
-
 import { HeroDetailsPageProps } from './HeroDetailsPage.types';
 
 export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {

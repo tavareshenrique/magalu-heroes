@@ -1,21 +1,18 @@
 'use client';
 
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
-
-import { useSearchParams } from 'next/navigation';
-
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-
-import { fetchHeroes } from '@/repositories/fetch-heroes';
-
-import { FavoriteHeroes } from './components/favorite-heroes/favorite-heroes';
-import { AllHeroes } from './components/all-heroes/all-heroes';
-import { FilterSheet } from './components/filter-sheet/filter-sheet';
-import { FilterButton } from './components/filter-button/filter-button';
-import { SortHeroes } from './components/sort-heroes/sort-heroes';
+import dynamic from 'next/dynamic';
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 import * as loadingLottie from '@/assets/lotties/loading-lottie.json';
+import { fetchHeroes } from '@/repositories/fetch-heroes';
+
+import { AllHeroes } from './components/all-heroes/all-heroes';
+import { FavoriteHeroes } from './components/favorite-heroes/favorite-heroes';
+import { FilterButton } from './components/filter-button/filter-button';
+import { FilterSheet } from './components/filter-sheet/filter-sheet';
+import { SortHeroes } from './components/sort-heroes/sort-heroes';
 
 const LoadingHeroes = dynamic(
   () =>

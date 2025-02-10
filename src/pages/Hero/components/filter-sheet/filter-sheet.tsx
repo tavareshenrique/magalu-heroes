@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-
 import { Sheet } from 'react-modal-sheet';
 
-import { useHeroes } from '@/context/HeroContext';
-
 import { Filter } from '@/components/filter/filter';
+import { useHeroes } from '@/context/HeroContext';
 
 export function FilterSheet() {
   const [isMounted, setIsMounted] = useState(false);

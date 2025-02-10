@@ -1,7 +1,6 @@
+import { Hero, HeroResponse } from '@/types/global.types';
 import { checkIsFavorite } from '@/utils/favoriteHeroesStorage';
 import { isLastPage } from '@/utils/isLastPage';
-
-import { Hero, HeroResponse } from '@/types/global.types';
 
 async function makeFetchHeroes(heroes: HeroResponse) {
   const parsedHeroes: Hero[] = heroes.data.results.map((hero) => {

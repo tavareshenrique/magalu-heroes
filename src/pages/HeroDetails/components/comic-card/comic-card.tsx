@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-import { DialogTrigger } from '../ui/dialog';
+import { DialogTrigger } from '@/components/ui/dialog';
 
 import { ComicCardProps } from './comic-card.types';
 

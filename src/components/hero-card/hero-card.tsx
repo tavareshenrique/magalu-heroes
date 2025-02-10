@@ -1,12 +1,10 @@
 'use client';
 
+import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { ChevronRight } from 'lucide-react';
-
 import { FavoriteButton } from '../favorite-button/favorite-button';
-
 import { HeroCardProps } from './hero-card.types';
 
 export function HeroCard({

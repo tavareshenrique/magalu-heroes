@@ -1,11 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-import Image from 'next/image';
-
 import { FavoriteButtonVariants } from './favorite-button.style';
-
 import { FavoriteButtonProps } from './favorite-button.types';
 
 export function FavoriteButton({

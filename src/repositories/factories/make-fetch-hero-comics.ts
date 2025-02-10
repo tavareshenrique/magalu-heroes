@@ -1,6 +1,6 @@
+import { Comic } from '@/types/global.types';
 import { isLastPage } from '@/utils/isLastPage';
 
-import { Comic } from '@/types/global.types';
 import { ComicResponse } from '../types/fetch-hero-comics.types';
 
 async function makeFetchHeroComics(comics: ComicResponse) {

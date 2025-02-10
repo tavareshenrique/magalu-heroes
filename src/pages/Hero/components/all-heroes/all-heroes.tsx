@@ -2,14 +2,12 @@
 
 import dynamic from 'next/dynamic';
 
-import { useHeroes } from '@/context/HeroContext';
-
+import * as heroLottie from '@/assets/lotties/hero-lottie.json';
 import { HeroCard } from '@/components/hero-card/hero-card';
 import { SimplePagination } from '@/components/simple-pagination/simple-pagination';
+import { useHeroes } from '@/context/HeroContext';
 
 import { AllHeroesProps } from './all-heroes.types';
-
-import * as heroLottie from '@/assets/lotties/hero-lottie.json';
 
 const EmptyData = dynamic(
   () =>

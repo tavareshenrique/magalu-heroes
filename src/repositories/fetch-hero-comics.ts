@@ -1,7 +1,6 @@
 import { api } from '@/lib/api';
 
 import { makeFetchHeroComics } from './factories/make-fetch-hero-comics';
-
 import {
   ComicResponse,
   FetchHeroComicsParams,

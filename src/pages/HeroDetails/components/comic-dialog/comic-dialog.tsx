@@ -3,11 +3,11 @@ import Image from 'next/image';
 import {
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
-  DialogTitle,
   DialogOverlay,
   DialogPortal,
-  DialogFooter,
+  DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
 
