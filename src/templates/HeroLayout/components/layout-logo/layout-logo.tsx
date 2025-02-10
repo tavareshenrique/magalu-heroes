@@ -11,10 +11,12 @@ export function LayoutLogo() {
 
   const isHeroDetailPage = /^\/hero\/\d+$/.test(pathname!);
 
+  if (isHeroDetailPage) {
+    return null;
+  }
+
   return (
-    <div
-      className={`h-[241px] bg-sky-650 flex items-center justify-center ${isHeroDetailPage && 'hidden md:flex'}`}
-    >
+    <div className="h-[241px] bg-sky-650 flex items-center justify-center">
       <Image
         src="/images/logo.png"
         alt={ALT_TITLE}
