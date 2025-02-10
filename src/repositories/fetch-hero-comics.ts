@@ -23,8 +23,6 @@ export async function fetchHeroComics({ heroId, page }: FetchHeroComicsParams) {
     },
   );
 
-  console.log('chamou novamente', page);
-
   const comics = makeFetchHeroComics(response.data);
 
   return comics;
