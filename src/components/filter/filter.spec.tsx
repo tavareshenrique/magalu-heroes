@@ -1,6 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { useRouter } from 'next/navigation';
-import React from 'react';
 import { describe, expect, it, Mock, vi } from 'vitest';
 
 import { Filter } from './filter';
