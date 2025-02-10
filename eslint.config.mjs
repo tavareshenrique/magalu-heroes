@@ -1,9 +1,10 @@
-import globals from 'globals';
 import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import pluginReact from 'eslint-plugin-react';
-import pluginPrettier from 'eslint-plugin-prettier';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import pluginPrettier from 'eslint-plugin-prettier';
+import pluginReact from 'eslint-plugin-react';
+import pluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -21,9 +22,12 @@ export default [
   {
     plugins: {
       prettier: pluginPrettier,
+      'simple-import-sort': pluginSimpleImportSort,
     },
     rules: {
       'prettier/prettier': 'error',
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
     },
   },
   {
