@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect } from 'react';
+
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -31,6 +33,12 @@ export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
       }),
   });
 
+  useEffect(() => {
+    if (!data && !isLoading) {
+      router.push('/404');
+    }
+  }, [data, isLoading, router]);
+
   function getMagaluLink() {
     if (!data) {
       return '';
@@ -41,8 +49,12 @@ export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
     return `https://www.magazineluiza.com.br/busca/${formatHeroName}/?from=submit`;
   }
 
-  if (!data || isLoading) {
+  if (isLoading && !data) {
     return <HeroDetailsSkeleton />;
+  }
+
+  if (!data) {
+    return null;
   }
 
   return (
