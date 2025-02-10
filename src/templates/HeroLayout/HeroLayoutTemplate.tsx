@@ -1,6 +1,6 @@
-import { HeroLayoutTemplateProps } from './components/HeroLayoutTemplate.types';
 import { LayoutFilter } from './components/layout-filter/layout-filter';
 import { LayoutLogo } from './components/layout-logo/layout-logo';
+import { HeroLayoutTemplateProps } from './HeroLayoutTemplate.types';
 
 export function HeroLayoutTemplate({ children }: HeroLayoutTemplateProps) {
   return (
