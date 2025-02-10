@@ -43,73 +43,92 @@ export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
   }
 
   return (
-    <div>
-      <button
-        type="button"
-        className="flex items-center"
-        onClick={() => router.back()}
-      >
-        <ChevronLeft size={24} strokeWidth={3} />
-      </button>
-
-      <div className="flex flex-row mt-10">
+    <>
+      <div className="w-full max-h-[200px] overflow-hidden bg-red-500 md:hidden">
         <Image
           src={data.hero.thumbnail}
           alt={data.hero.name}
-          width={200}
-          height={200}
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="w-full h-auto max-h-[200px] object-cover"
           quality={100}
-          className="rounded-2xl"
         />
+      </div>
 
-        <div className="flex flex-col ml-4 w-full">
-          <h1 className="text-4xl font-extrabold text-black">
-            {data.hero.name}
-          </h1>
+      <div className="md:px-14 md:mt-10 mt-4 px-6">
+        <button
+          type="button"
+          className="flex items-center mt-8"
+          onClick={() => router.back()}
+        >
+          <ChevronLeft size={24} strokeWidth={3} />
+        </button>
 
-          <div className="flex flex-row justify-between items-center w-full">
-            <p className="text-sky-900 text-base mr-4 mt-2 line-clamp-6">
-              {data.hero.description}
-            </p>
-
-            <FavoriteButton
-              hero={data.hero}
-              onAddFavoriteHero={onAddFavoriteHero}
-              onRemoveFavoriteHero={onRemoveFavoriteHero}
-              reset
+        <div className="flex flex-row mt-5 md:mt-10">
+          <div className="relative hidden md:block">
+            <Image
+              src={data.hero.thumbnail}
+              alt={data.hero.name}
+              layout="intrinsic"
+              width={200}
+              height={200}
+              quality={100}
+              className="rounded-2xl"
             />
           </div>
+
+          <div className="flex flex-col items-start md:ml-4 w-full md:mx-4 md:mt-0">
+            <div className="flex flex-row items-center justify-between w-full">
+              <h1 className="text-2xl mr-4 md:mr-0 md:text-4xl font-extrabold text-black">
+                {data.hero.name}
+              </h1>
+
+              <FavoriteButton
+                hero={data.hero}
+                onAddFavoriteHero={onAddFavoriteHero}
+                onRemoveFavoriteHero={onRemoveFavoriteHero}
+                reset
+              />
+            </div>
+
+            <div className="w-full mt-4">
+              <p className="text-sky-900 text-sm md:text-base mr-4 md:mr-4 mt-2 line-clamp-9 md:line-clamp-6">
+                {data.hero.description}
+              </p>
+            </div>
+          </div>
         </div>
+
+        <div className="mt-8 flex flex-row items-center justify-start">
+          <Image
+            src="/images/magazine-luiza.webp"
+            alt="Lu da Magalu"
+            width={48}
+            height={48}
+            className="rounded-full mr-2 w-auto h-auto max-w-[10%] sm:max-w-[48px]"
+            quality={100}
+          />
+
+          <p className="text-sky-900 text-sm md:text-base font-semibold">
+            See some offers for this character at{' '}
+            <a
+              href={getMagaluLink()}
+              target="_blank"
+              rel="noreferrer"
+              className="text-sky-550 underline text-lg md:text-xl hover:text-sky-900"
+            >
+              Magalu.
+            </a>
+          </p>
+        </div>
+
+        <h2 className="text-lg md:text-2xl font-bold text-sky-900 mt-10">
+          Some of his works and appearances:
+        </h2>
+
+        <div></div>
       </div>
-
-      <div className="mt-8 flex flex-row items-center justify-start">
-        <Image
-          src="/images/magazine-luiza.webp"
-          alt="Lu da Magalu"
-          width={48}
-          height={48}
-          className="rounded-full mr-2"
-          quality={100}
-        />
-
-        <p className="text-sky-900 text-base font-semibold">
-          See some offers for this character at{' '}
-          <a
-            href={getMagaluLink()}
-            target="_blank"
-            rel="noreferrer"
-            className="text-sky-550 underline text-xl hover:text-sky-900"
-          >
-            Magalu.
-          </a>
-        </p>
-      </div>
-
-      <h2 className="text-2xl font-bold text-sky-900 mt-10">
-        Some of his works and appearances:
-      </h2>
-
-      <div></div>
-    </div>
+    </>
   );
 }
