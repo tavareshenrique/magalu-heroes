@@ -6,6 +6,20 @@ export type Hero = {
   isFavorite?: boolean;
 };
 
+export type Comic = {
+  id: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+};
+
+export interface ComicCardProps {
+  id: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+}
+
 export interface HeroResponse {
   data: {
     offset: number;
