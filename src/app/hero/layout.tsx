@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
-import { Filter } from '@/components/filter/filter';
+import { NavFilter } from '@/components/nav-filter/nav-filter';
 
 const ALT_TITLE =
   "A silhouette of a superhero all in white flying with his right hand pointing to the sky, symbolizing the application's logo.";
 
-export default function HeroLayout({
+export default async function HeroLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -24,11 +24,7 @@ export default function HeroLayout({
           />
         </div>
 
-        <div className="md:block p-14 hidden">
-          <h1 className="text-2xl font-extrabold text-white mb-6">Filters</h1>
-
-          <Filter />
-        </div>
+        <NavFilter />
       </section>
 
       <main className="md:px-14 md:mt-10 flex-1 mt-4 px-6">{children}</main>
