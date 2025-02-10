@@ -63,7 +63,7 @@ export function HeroPage() {
   }
 
   return (
-    <>
+    <div className="md:px-14 md:mt-10 mt-4 px-6">
       <div className="h-full">
         <div className="flex flex-row-reverse justify-between">
           <SortHeroes onChange={setOrderBy} value={orderBy} />
@@ -102,6 +102,6 @@ export function HeroPage() {
 
         <FilterSheet />
       </div>
-    </>
+    </div>
   );
 }
