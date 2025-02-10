@@ -19,7 +19,9 @@ describe('AnimationLottie Component', () => {
     render(
       <AnimationLottie animationData={{}} data-testid="lottie-animation" />,
     );
+
     const lottieElement = screen.getByTestId('lottie-animation');
+
     expect(lottieElement).toBeInTheDocument();
   });
 
@@ -31,7 +33,9 @@ describe('AnimationLottie Component', () => {
         data-testid="lottie-animation"
       />,
     );
+
     const lottieElement = screen.getByTestId('lottie-animation');
+
     expect(lottieElement).toHaveStyle({ width: '300px', height: '300px' });
   });
 });
