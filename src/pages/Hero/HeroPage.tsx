@@ -9,13 +9,7 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import { fetchHeroes } from '@/repositories/fetch-heroes';
 
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationNext,
-  PaginationPrevious,
-} from '@/components/ui/pagination';
+import { SimplePagination } from '@/components/simple-pagination/simple-pagination';
 
 import { FavoriteHeroes } from './components/favorite-heroes/favorite-heroes';
 import { AllHeroes } from './components/all-heroes/all-heroes';
@@ -77,26 +71,11 @@ export function HeroPage() {
           <>
             <AllHeroes heroes={data.heroes} />
 
-            <div className="md:my-2 p-4 flex my-8">
-              <Pagination>
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious
-                      className="cursor-pointer disabled:cursor-not-allowed"
-                      disabled={page === 0}
-                      onClick={() => setPage(page - 1)}
-                    />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext
-                      className="cursor-pointer disabled:cursor-not-allowed"
-                      disabled={data.isLastPage}
-                      onClick={() => setPage(page + 1)}
-                    />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
+            <SimplePagination
+              page={page}
+              setPage={setPage}
+              isLastPage={data.isLastPage}
+            />
           </>
         )}
 
