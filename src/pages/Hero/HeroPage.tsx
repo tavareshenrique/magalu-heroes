@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 
 import { useSearchParams } from 'next/navigation';
 
@@ -21,7 +22,16 @@ import { AllHeroes } from './components/all-heroes/all-heroes';
 import { FilterSheet } from './components/filter-sheet/filter-sheet';
 import { FilterButton } from './components/filter-button/filter-button';
 import { SortHeroes } from './components/sort-heroes/sort-heroes';
-import { LoadingHeroes } from './components/loading-heroes/loading-heroes';
+
+const LoadingHeroes = dynamic(
+  () =>
+    import('./components/loading-heroes/loading-heroes').then(
+      (mod) => mod.LoadingHeroes,
+    ),
+  {
+    ssr: false,
+  },
+);
 
 export function HeroPage() {
   const searchParams = useSearchParams();
