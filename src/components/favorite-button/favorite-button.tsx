@@ -19,7 +19,14 @@ export function FavoriteButton({
     hero.isFavorite ?? false,
   );
 
+  const [likeAudio] = useState(() => new Audio('/sound/like.wav'));
+
   const explodeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function playLikeSound() {
+    likeAudio.currentTime = 0;
+    likeAudio.play();
+  }
 
   function handleMarkAsFavorite() {
     if (isHeroFavorite) {
@@ -28,6 +35,8 @@ export function FavoriteButton({
 
       return;
     }
+
+    playLikeSound();
 
     setIsExploding(true);
     setIsHeroFavorite(true);
