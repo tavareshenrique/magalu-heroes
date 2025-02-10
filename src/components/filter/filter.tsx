@@ -26,6 +26,7 @@ export function Filter() {
     handleSubmit,
     watch,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(filterSchema),
@@ -36,11 +37,22 @@ export function Filter() {
   });
 
   useEffect(() => {
-    if (searchParams) {
-      setValue('characterName', searchParams.get('characterName') || '');
-      setValue('onlyFavorites', searchParams.get('onlyFavorites') === 'true');
+    if (!searchParams) return;
+
+    const characterName = getValues('characterName');
+    const onlyFavorites = getValues('onlyFavorites');
+
+    const newCharacterName = searchParams.get('characterName') || '';
+    const newOnlyFavorites = searchParams.get('onlyFavorites') === 'true';
+
+    if (characterName !== newCharacterName) {
+      setValue('characterName', newCharacterName);
     }
-  }, [searchParams, setValue]);
+
+    if (onlyFavorites !== newOnlyFavorites) {
+      setValue('onlyFavorites', newOnlyFavorites);
+    }
+  }, [searchParams]);
 
   function onSubmit(data: FilterValues) {
     const params = new URLSearchParams();
