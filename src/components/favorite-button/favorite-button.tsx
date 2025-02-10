@@ -10,6 +10,7 @@ import { FavoriteButtonProps } from './favorite-button.types';
 
 export function FavoriteButton({
   hero,
+  reset = false,
   onAddFavoriteHero,
   onRemoveFavoriteHero,
 }: FavoriteButtonProps) {
@@ -48,7 +49,7 @@ export function FavoriteButton({
 
   return (
     <button
-      className={`group ${FavoriteButtonVariants({ isFavorite: isHeroFavorite })}`}
+      className={`group relative bottom-6 ${FavoriteButtonVariants({ isFavorite: isHeroFavorite, reset })}`}
       onClick={handleMarkAsFavorite}
     >
       <div className="max-[1440px]:w-4 max-[1440px]:h-4 relative w-6 h-6">
