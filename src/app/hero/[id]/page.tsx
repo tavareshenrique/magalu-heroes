@@ -2,7 +2,7 @@ import { HeroDetailsPage } from '@/routes/HeroDetails/HeroDetailsPage';
 import { HeroTemplate } from '@/templates/HeroTemplate/HeroTemplate';
 
 type Props = {
-  params: Promise<{ id: string }>; // Permite que params seja uma Promise
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata() {
@@ -12,7 +12,7 @@ export async function generateMetadata() {
 }
 
 export default async function HeroDetails({ params }: Props) {
-  const { id } = await params; // Espera a resolução da Promise
+  const { id } = await params;
 
   return (
     <HeroTemplate>
