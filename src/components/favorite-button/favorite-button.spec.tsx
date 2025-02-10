@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 
@@ -6,10 +7,10 @@ import { Hero } from '@/types/global.types';
 import { FavoriteButton } from './favorite-button';
 
 const mockHero: Hero = {
-  id: '1',
-  name: 'Spider-Man',
-  description: 'The amazing',
-  thumbnail: 'image.jpg',
+  id: faker.string.uuid(),
+  name: faker.person.firstName(),
+  description: faker.lorem.sentence(),
+  thumbnail: faker.image.url(),
   isFavorite: false,
 };
 
