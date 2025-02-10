@@ -49,7 +49,7 @@ export function FavoriteButton({
 
   return (
     <button
-      className={`group relative bottom-6 ${FavoriteButtonVariants({ isFavorite: isHeroFavorite, reset })}`}
+      className={`group relative ${FavoriteButtonVariants({ isFavorite: isHeroFavorite, reset })} ${!reset ? 'bottom-6' : ''}`}
       onClick={handleMarkAsFavorite}
     >
       <div className="max-[1440px]:w-4 max-[1440px]:h-4 relative w-6 h-6">

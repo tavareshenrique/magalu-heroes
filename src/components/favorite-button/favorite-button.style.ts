@@ -24,9 +24,8 @@ export const FavoriteButtonVariants = tv({
         static
       `,
       false: `
-        absolute bottom-0 left-1/2
+        absolute left-1/2
         transform -translate-x-1/2
-        max-[1440px]:bottom-2
       `,
     },
   },
