@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { FavoriteButton } from '@/components/favorite-button/favorite-button';
 import { useHeroes } from '@/context/HeroContext';
 import { fetchHeroDetails } from '@/repositories/fetch-hero-details';
+import { getMagaluLink } from '@/utils/getMagaluLink';
 
 import { AllComics } from './components/all-comics/all-comics';
 import { HeroDetailsSkeleton } from './components/hero-details-skeleton/hero-details-skeleton';
@@ -32,16 +33,6 @@ export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
       router.push('/404');
     }
   }, [data, isLoading, router]);
-
-  function getMagaluLink() {
-    if (!data) {
-      return '';
-    }
-
-    const formatHeroName = data?.hero.name.replace(/\s|-/g, '+');
-
-    return `https://www.magazineluiza.com.br/busca/${formatHeroName}/?from=submit`;
-  }
 
   if (isLoading && !data) {
     return <HeroDetailsSkeleton />;
@@ -125,7 +116,7 @@ export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
           <p className="text-sky-900 text-sm md:text-base font-semibold">
             See some offers for this character at{' '}
             <a
-              href={getMagaluLink()}
+              href={getMagaluLink(data.hero.name)}
               target="_blank"
               rel="noreferrer"
               className="text-sky-550 underline text-lg md:text-xl hover:text-sky-900"
