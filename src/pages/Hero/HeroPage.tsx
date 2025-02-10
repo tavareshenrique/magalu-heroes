@@ -9,18 +9,18 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import { fetchHeroes } from '@/repositories/fetch-heroes';
 
-import { SimplePagination } from '@/components/simple-pagination/simple-pagination';
-
 import { FavoriteHeroes } from './components/favorite-heroes/favorite-heroes';
 import { AllHeroes } from './components/all-heroes/all-heroes';
 import { FilterSheet } from './components/filter-sheet/filter-sheet';
 import { FilterButton } from './components/filter-button/filter-button';
 import { SortHeroes } from './components/sort-heroes/sort-heroes';
 
+import * as loadingLottie from '@/assets/lotties/loading-lottie.json';
+
 const LoadingHeroes = dynamic(
   () =>
-    import('./components/loading-heroes/loading-heroes').then(
-      (mod) => mod.LoadingHeroes,
+    import('@/components/animation-lottie/animation-lottie').then(
+      (mod) => mod.AnimationLottie,
     ),
   {
     ssr: false,
@@ -33,16 +33,16 @@ export function HeroPage() {
   const [page, setPage] = useState(0);
   const [orderBy, setOrderBy] = useState('name');
 
-  const heroName = searchParams?.get('heroName') || null;
+  const characterName = searchParams?.get('characterName') || null;
   const onlyFavorites = searchParams?.get('onlyFavorites') ?? false;
 
   const { data, isLoading } = useQuery({
-    queryKey: ['heroes', page, orderBy, heroName],
+    queryKey: ['heroes', page, orderBy, characterName],
     queryFn: () =>
       fetchHeroes({
         page,
         orderBy,
-        byName: heroName,
+        byName: characterName,
       }),
     placeholderData: keepPreviousData,
   });
@@ -50,7 +50,7 @@ export function HeroPage() {
   if (!data || isLoading) {
     return (
       <div className="flex flex-col justify-center items-center h-full">
-        <LoadingHeroes />
+        <LoadingHeroes animationData={loadingLottie} />
         <p className="text-2xl mt-4">Loading...</p>
       </div>
     );
@@ -68,15 +68,12 @@ export function HeroPage() {
         <FavoriteHeroes />
 
         {!onlyFavorites && (
-          <>
-            <AllHeroes heroes={data.heroes} />
-
-            <SimplePagination
-              page={page}
-              setPage={setPage}
-              isLastPage={data.isLastPage}
-            />
-          </>
+          <AllHeroes
+            heroes={data.heroes}
+            page={page}
+            isLastPage={data.isLastPage}
+            setPage={setPage}
+          />
         )}
 
         <FilterSheet />
