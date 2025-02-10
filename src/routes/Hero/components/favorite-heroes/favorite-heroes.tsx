@@ -76,21 +76,16 @@ export function FavoriteHeroes() {
             >
               <HeroCard
                 key={hero.id}
+                hero={hero}
                 onAddFavoriteHero={onAddFavoriteHero}
                 onRemoveFavoriteHero={onRemoveFavoriteHero}
-                hero={{
-                  name: hero.name,
-                  description: hero.description,
-                  id: hero.id,
-                  thumbnail: hero.thumbnail,
-                  isFavorite: true,
-                }}
               />
             </div>
           ))}
         </div>
       </div>
 
+      {/* {favoriteHeroes.length > itemsPerPage && ( */}
       <div className="flex justify-between mt-4">
         <button
           onClick={scrollLeft}
@@ -102,11 +97,12 @@ export function FavoriteHeroes() {
         <button
           onClick={scrollRight}
           className="bg-blue-400 w-12 text-white p-2 rounded-full disabled:bg-gray-300"
-          disabled={scrollIndex >= favoriteHeroes.length - itemsPerPage}
+          disabled={scrollIndex === favoriteHeroes.length - itemsPerPage}
         >
           →
         </button>
       </div>
+      {/* )} */}
     </div>
   );
 }
