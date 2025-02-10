@@ -3,10 +3,10 @@
 import dynamic from 'next/dynamic';
 
 import * as heroLottie from '@/assets/lotties/hero-lottie.json';
-import { HeroCard } from '@/components/hero-card/hero-card';
 import { SimplePagination } from '@/components/simple-pagination/simple-pagination';
 import { useHeroes } from '@/context/HeroContext';
 
+import { HeroCard } from '../hero-card/hero-card';
 import { AllHeroesProps } from './all-heroes.types';
 
 const EmptyData = dynamic(

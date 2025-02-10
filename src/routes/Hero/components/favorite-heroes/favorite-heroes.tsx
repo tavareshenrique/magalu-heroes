@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 
-import { HeroCard } from '@/components/hero-card/hero-card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useHeroes } from '@/context/HeroContext';
+
+import { HeroCard } from '../hero-card/hero-card';
 
 export function FavoriteHeroes() {
   const [scrollIndex, setScrollIndex] = useState(0);
