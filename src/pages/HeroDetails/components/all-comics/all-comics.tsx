@@ -1,23 +1,18 @@
 'use client';
 
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
-
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-
-import { fetchHeroComics } from '@/repositories/fetch-hero-comics';
-
-import { Dialog } from '@/components/ui/dialog';
-
-import { ComicCard } from '@/components/comic-card/comic-card';
-import { SimplePagination } from '@/components/simple-pagination/simple-pagination';
-
-import { AllComicsSkeleton } from './all-comics.skeleton';
-import { ComicDialog } from '../comic-dialog/comic-dialog';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
 
 import * as bookLottie from '@/assets/lotties/book-lottie.json';
-
+import { SimplePagination } from '@/components/simple-pagination/simple-pagination';
+import { Dialog } from '@/components/ui/dialog';
+import { fetchHeroComics } from '@/repositories/fetch-hero-comics';
 import { Comic } from '@/types/global.types';
+
+import { ComicCard } from '../comic-card/comic-card';
+import { ComicDialog } from '../comic-dialog/comic-dialog';
+import { AllComicsSkeleton } from './all-comics.skeleton';
 import { AllComicsProps } from './all-comics.types';
 
 const EmptyData = dynamic(
