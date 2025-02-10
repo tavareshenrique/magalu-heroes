@@ -13,6 +13,9 @@ import { useHeroes } from '@/context/HeroContext';
 
 import { FavoriteButton } from '@/components/favorite-button/favorite-button';
 
+import { AllComics } from './components/all-comics/all-comics';
+import { HeroDetailsSkeleton } from './components/hero-details-skeleton/hero-details-skeleton';
+
 import { HeroDetailsPageProps } from './HeroDetailsPage.types';
 
 export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
@@ -39,7 +42,7 @@ export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
   }
 
   if (!data || isLoading) {
-    return null;
+    return <HeroDetailsSkeleton />;
   }
 
   return (
@@ -93,20 +96,23 @@ export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
             </div>
 
             <div className="w-full mt-4">
-              <p className="text-sky-900 text-sm md:text-base mr-4 md:mr-4 mt-2 line-clamp-9 md:line-clamp-6">
+              <p
+                className="text-sky-900 text-sm md:text-base mr-4 md:mr-4 mt-2 line-clamp-9 md:line-clamp-6"
+                title={data.hero.description}
+              >
                 {data.hero.description}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-row items-center justify-start">
+        <div className="max-[1440px]:mt-2 mt-8 flex flex-row items-center justify-start">
           <Image
             src="/images/magazine-luiza.webp"
             alt="Lu da Magalu"
             width={48}
             height={48}
-            className="rounded-full mr-2 w-auto h-auto max-w-[10%] sm:max-w-[48px]"
+            className="rounded-full mr-2 w-auto h-auto max-w-[10%] max-[1440px]:w-[4%] sm:max-w-[48px]"
             quality={100}
           />
 
@@ -123,11 +129,14 @@ export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
           </p>
         </div>
 
-        <h2 className="text-lg md:text-2xl font-bold text-sky-900 mt-10">
-          Some of his works and appearances:
+        <h2 className="text-lg md:text-2xl font-bold text-sky-900 max-[1440px]:mt-4 mt-10">
+          All comics from: {''}
+          <span className="text-sky-950 font-extrabold">{data.hero.name}</span>
         </h2>
 
-        <div></div>
+        <div className="my-4">
+          <AllComics heroId={heroId} />
+        </div>
       </div>
     </>
   );
