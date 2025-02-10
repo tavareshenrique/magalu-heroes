@@ -1,19 +1,18 @@
-import { Metadata } from 'next';
+import { HeroDetailsPage } from '@/routes/HeroDetails/HeroDetailsPage';
 import { HeroTemplate } from '@/templates/HeroTemplate/HeroTemplate';
-import { HeroDetailsPage } from '@/pages/HeroDetails/HeroDetailsPage';
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>; // Permite que params seja uma Promise
 };
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata() {
   return {
     title: 'Details',
   };
 }
 
 export default async function HeroDetails({ params }: Props) {
-  const { id } = await params;
+  const { id } = await params; // Espera a resolução da Promise
 
   return (
     <HeroTemplate>

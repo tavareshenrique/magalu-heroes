@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
-import { HeroPage } from '@/pages/Hero/HeroPage';
+import { HeroPage } from '@/routes/Hero/HeroPage';
 import { HeroTemplate } from '@/templates/HeroTemplate/HeroTemplate';
 
 export const metadata: Metadata = {
@@ -10,7 +11,9 @@ export const metadata: Metadata = {
 export default function Hero() {
   return (
     <HeroTemplate>
-      <HeroPage />
+      <Suspense>
+        <HeroPage />
+      </Suspense>
     </HeroTemplate>
   );
 }

@@ -1,9 +1,8 @@
+import './globals.css';
+
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
-
 import NextTopLoader from 'nextjs-toploader';
-
-import './globals.css';
 
 const nunito = Nunito({
   variable: '--font-nunito',
