@@ -1,28 +1,17 @@
 'use client';
 
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
-import * as loadingLottie from '@/assets/lotties/loading-lottie.json';
 import { fetchHeroes } from '@/repositories/fetch-heroes';
 
 import { AllHeroes } from './components/all-heroes/all-heroes';
 import { FavoriteHeroes } from './components/favorite-heroes/favorite-heroes';
 import { FilterButton } from './components/filter-button/filter-button';
 import { FilterSheet } from './components/filter-sheet/filter-sheet';
+import { HeroLoading } from './components/hero-loading/hero-loading';
 import { SortHeroes } from './components/sort-heroes/sort-heroes';
-
-const LoadingHeroes = dynamic(
-  () =>
-    import('@/components/animation-lottie/animation-lottie').then(
-      (mod) => mod.AnimationLottie,
-    ),
-  {
-    ssr: false,
-  },
-);
 
 export function HeroPage() {
   const searchParams = useSearchParams();
@@ -45,12 +34,7 @@ export function HeroPage() {
   });
 
   if (!data || isLoading) {
-    return (
-      <div className="flex flex-col justify-center items-center h-full">
-        <LoadingHeroes animationData={loadingLottie} />
-        <p className="text-2xl mt-4">Loading...</p>
-      </div>
-    );
+    return <HeroLoading />;
   }
 
   return (
