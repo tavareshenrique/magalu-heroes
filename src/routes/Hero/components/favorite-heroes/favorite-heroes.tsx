@@ -77,7 +77,10 @@ export function FavoriteHeroes() {
             >
               <HeroCard
                 key={hero.id}
-                hero={hero}
+                hero={{
+                  ...hero,
+                  isFavorite: true,
+                }}
                 onAddFavoriteHero={onAddFavoriteHero}
                 onRemoveFavoriteHero={onRemoveFavoriteHero}
               />
