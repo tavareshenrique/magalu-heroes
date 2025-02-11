@@ -14,7 +14,10 @@ export function HeroCard({
   onRemoveFavoriteHero,
 }: HeroCardProps) {
   return (
-    <div className="max-[1440px]:h-[112px] bg-gray-200 rounded-2xl h-[160px] w-full">
+    <div
+      className="max-[1440px]:h-[112px] bg-gray-200 rounded-2xl h-[160px] w-full"
+      data-testid="hero-card"
+    >
       <div className="flex flex-row items-start justify-between h-full">
         <div className="relative p-4 flex-shrink-0">
           <Image
