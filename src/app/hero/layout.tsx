@@ -1,4 +1,4 @@
-import { HeroLayoutTemplate } from '@/templates/HeroLayout/HeroLayoutTemplate';
+import { HeroLayoutTemplate } from '@/templates/HeroLayoutTemplate/HeroLayoutTemplate';
 
 export default async function HeroLayout({
   children,
