@@ -22,6 +22,7 @@ export function SimplePagination({
               className="cursor-pointer disabled:cursor-not-allowed"
               disabled={page === 0}
               onClick={() => setPage(page - 1)}
+              data-testid="pagination-prev"
             />
           </PaginationItem>
           <PaginationItem>
@@ -29,6 +30,7 @@ export function SimplePagination({
               className="cursor-pointer disabled:cursor-not-allowed"
               disabled={isLastPage}
               onClick={() => setPage(page + 1)}
+              data-testid="pagination-next"
             />
           </PaginationItem>
         </PaginationContent>

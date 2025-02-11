@@ -61,6 +61,7 @@ export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
           type="button"
           className="flex items-center mt-8"
           onClick={() => router.back()}
+          data-testid="back-button"
         >
           <ChevronLeft size={24} strokeWidth={3} />
         </button>
