@@ -28,12 +28,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Start JSON Server for E2E
-        run: pnpm init:db:e2e &
-
-      - name: Start dev server
-        run: pnpm dev &
-
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
