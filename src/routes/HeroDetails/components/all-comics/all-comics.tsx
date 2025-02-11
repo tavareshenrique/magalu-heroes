@@ -10,9 +10,9 @@ import { Dialog } from '@/components/ui/dialog';
 import { fetchHeroComics } from '@/repositories/fetch-hero-comics';
 import { Comic } from '@/types/global.types';
 
+import { AllComicsSkeleton } from '../all-comics-skeleton/all-comics-skeleton';
 import { ComicCard } from '../comic-card/comic-card';
 import { ComicDialog } from '../comic-dialog/comic-dialog';
-import { AllComicsSkeleton } from './all-comics.skeleton';
 import { AllComicsProps } from './all-comics.types';
 
 const EmptyData = dynamic(
