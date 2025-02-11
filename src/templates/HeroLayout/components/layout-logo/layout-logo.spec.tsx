@@ -8,22 +8,24 @@ vi.mock('next/navigation', () => ({
   usePathname: vi.fn(),
 }));
 
-describe('LayoutLogo Component', () => {
-  it('should render the logo on non-hero detail pages', () => {
-    (usePathname as Mock).mockReturnValue('/home');
+describe('LayoutLogo', () => {
+  it('renders the logo image by default', () => {
+    (usePathname as Mock).mockReturnValue('/');
 
     render(<LayoutLogo />);
 
     expect(
-      screen.getByRole('img', { name: /A silhouette of a superhero/i }),
+      screen.getByAltText(/A silhouette of a superhero/i),
     ).toBeInTheDocument();
   });
 
-  it('should not render the logo on hero detail pages', () => {
+  it('hides the logo on hero detail page in medium screens and above', () => {
     (usePathname as Mock).mockReturnValue('/hero/123');
 
     render(<LayoutLogo />);
 
-    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    const logoContainer = screen.getByRole('img').parentElement;
+
+    expect(logoContainer).toHaveClass('hidden');
   });
 });
