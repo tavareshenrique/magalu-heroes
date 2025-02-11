@@ -1,6 +1,6 @@
 'use client';
 
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
@@ -36,7 +36,6 @@ export function AllComics({ heroId }: AllComicsProps) {
         heroId,
         page,
       }),
-    placeholderData: keepPreviousData,
   });
 
   if (!data || isLoading) {
