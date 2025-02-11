@@ -1,5 +1,6 @@
 'use client';
 
+import clsx from 'clsx';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
@@ -11,12 +12,15 @@ export function LayoutLogo() {
 
   const isHeroDetailPage = /^\/hero\/\d+$/.test(pathname!);
 
-  if (isHeroDetailPage) {
-    return null;
-  }
+  const className = clsx(
+    'h-[241px] bg-sky-650 flex items-center justify-center',
+    {
+      'hidden md:flex': isHeroDetailPage,
+    },
+  );
 
   return (
-    <div className="h-[241px] bg-sky-650 flex items-center justify-center">
+    <div className={className}>
       <Image
         src="/images/logo.png"
         alt={ALT_TITLE}
