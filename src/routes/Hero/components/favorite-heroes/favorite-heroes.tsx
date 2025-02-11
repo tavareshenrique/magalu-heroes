@@ -51,7 +51,12 @@ export function FavoriteHeroes() {
   };
 
   if (isLoadingFavoriteHeroes) {
-    return <Skeleton className="h-[160px] rounded-2xl" />;
+    return (
+      <Skeleton
+        data-testid="loading-skeleton"
+        className="h-[160px] rounded-2xl"
+      />
+    );
   }
 
   if (!favoriteHeroes || favoriteHeroes.length === 0) {
@@ -89,7 +94,6 @@ export function FavoriteHeroes() {
         </div>
       </div>
 
-      {/* {favoriteHeroes.length > itemsPerPage && ( */}
       <div className="flex justify-between mt-4">
         <button
           onClick={scrollLeft}
@@ -106,7 +110,6 @@ export function FavoriteHeroes() {
           →
         </button>
       </div>
-      {/* )} */}
     </div>
   );
 }
