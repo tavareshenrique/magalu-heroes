@@ -8,6 +8,7 @@ export function AllComicsSkeleton() {
     >
       {Array.from({ length: 6 }).map((_, index) => (
         <Skeleton
+          data-testid="skeleton-item"
           className="max-[1440px]:h-[112px] rounded-2xl h-[160px] w-full"
           key={index}
         />
