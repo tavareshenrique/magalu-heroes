@@ -22,18 +22,21 @@ export function ComicDialog({ comic }: ComicDialogProps) {
 
       <DialogContent className="bg-blue-200 rounded-2xl p-4 max-w-[800px] w-9/12 ">
         <DialogHeader>
-          <div className="flex flex-row items-start justify-between h-full">
+          <div className="flex flex-col items-center mt-10 md:mt-0 md:flex-row md:items-start justify-between h-full">
             <Image
               src={thumbnail}
               alt={title}
               width={200}
               height={200}
-              className="rounded-2xl"
+              quality={100}
+              className="rounded-2xl object-cover"
             />
 
-            <div className="flex flex-col py-4 flex-1 ml-4">
-              <DialogTitle className="text-lg font-bold">{title}</DialogTitle>
-              <DialogDescription className="mt-4 text-base text-gray-800">
+            <div className="flex flex-col py-4 flex-1 md:ml-4">
+              <DialogTitle className="text-lg font-bold line-clamp-4 md:line-clamp-none">
+                {title}
+              </DialogTitle>
+              <DialogDescription className="mt-4 text-base text-gray-800 line-clamp-6 md:line-clamp-none">
                 {description}
               </DialogDescription>
             </div>
