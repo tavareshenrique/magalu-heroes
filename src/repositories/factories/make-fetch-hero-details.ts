@@ -1,27 +1,33 @@
 import { Hero, HeroResponse } from '@/types/global.types';
 import { checkIsFavorite } from '@/utils/favoriteHeroesStorage';
 
+interface MakeFetchHeroDetailsResponse extends Hero {
+  totalComics: number;
+  totalSeries: number;
+  totalStories: number;
+  totalEvents: number;
+}
+
 async function makeFetchHeroDetails(heroes: HeroResponse) {
-  const parsedHeroes: Hero[] = heroes.data.results.map((hero) => {
-    const { id, name, description, thumbnail } = hero;
+  const hero = heroes.data.results[0];
 
-    const parsedId = id.toString();
+  if (!hero) return { hero: null };
 
-    const isFavorite = checkIsFavorite(parsedId);
-
-    const thumbnailPath = thumbnail.path + '.' + thumbnail.extension;
-
-    return {
-      id: parsedId,
-      name,
-      description: description || 'No description available...',
-      thumbnail: thumbnailPath,
-      isFavorite,
-    };
-  });
+  const { id, name, description, thumbnail, comics, series, stories, events } =
+    hero;
 
   return {
-    hero: parsedHeroes[0],
+    hero: {
+      id: id.toString(),
+      name,
+      description: description || 'No description available...',
+      thumbnail: `${thumbnail.path}.${thumbnail.extension}`,
+      isFavorite: checkIsFavorite(id.toString()),
+      totalComics: comics.available,
+      totalSeries: series.available,
+      totalStories: stories.available,
+      totalEvents: events.available,
+    } as MakeFetchHeroDetailsResponse,
   };
 }
 
