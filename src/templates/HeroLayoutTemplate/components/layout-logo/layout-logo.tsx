@@ -28,6 +28,7 @@ export function LayoutLogo() {
         width={170}
         height={170}
         quality={100}
+        priority
       />
     </div>
   );
