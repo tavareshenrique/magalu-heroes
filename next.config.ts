@@ -2,7 +2,16 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['i.annihil.us'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'i.annihil.us',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.annihil.us',
+      },
+    ],
   },
   rewrites: async () => {
     return [
