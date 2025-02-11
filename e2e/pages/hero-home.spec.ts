@@ -10,15 +10,9 @@ test('it should mark a character as a favorite', async ({ page }) => {
 
   await expect(page.getByRole('heading', { name: '3-D Man' })).toBeVisible();
 
-  const heroCard = await page.locator('[data-testid="hero-card"]').first();
+  await page.getByTestId('favorite-button').first().click();
 
-  const favoriteButton = await heroCard.locator(
-    '[data-testid="favorite-button"]',
-  );
-
-  await favoriteButton.click();
-
-  expect(page.getByRole('heading', { name: 'Favorites' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Favorites' })).toBeVisible();
 });
 
 test('it should order the characters', async ({ page }) => {

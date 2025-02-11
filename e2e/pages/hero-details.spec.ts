@@ -15,9 +15,7 @@ test('it should mark a character as a favorite', async ({ page }) => {
 
   await page.goto('/');
 
-  await page.waitForTimeout(5000);
-
-  expect(page.getByRole('heading', { name: 'Favorites' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Favorites' })).toBeVisible();
 });
 
 test('it should navigate to the hero page in magalu store', async ({
