@@ -36,6 +36,14 @@ export interface Result {
   description: string;
   modified: string;
   thumbnail: Thumbnail;
+  comics: Available;
+  series: Available;
+  stories: Available;
+  events: Available;
+}
+
+export interface Available {
+  available: number;
 }
 
 export interface Thumbnail {
