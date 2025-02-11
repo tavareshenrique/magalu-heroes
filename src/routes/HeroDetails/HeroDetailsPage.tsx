@@ -38,7 +38,7 @@ export function HeroDetailsPage({ heroId }: HeroDetailsPageProps) {
     return <HeroDetailsSkeleton />;
   }
 
-  if (!data) {
+  if (!data || !data.hero) {
     return null;
   }
 
