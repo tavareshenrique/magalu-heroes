@@ -2,6 +2,7 @@ import pluginJs from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import pluginPrettier from 'eslint-plugin-prettier';
 import pluginReact from 'eslint-plugin-react';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -23,11 +24,13 @@ export default [
     plugins: {
       prettier: pluginPrettier,
       'simple-import-sort': pluginSimpleImportSort,
+      'react-hooks': pluginReactHooks,
     },
     rules: {
       'prettier/prettier': 'error',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
+      ...pluginReactHooks.configs.recommended.rules,
     },
   },
   {
