@@ -4,6 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -37,33 +38,42 @@ export function HeroProvider({ children }: IHeroProvider) {
   const [isLoadingFavoriteHeroes, setIsLoadingFavoriteHeroes] = useState(false);
   const [isBottomSheetFilterOpen, setIsBottomSheetFilterOpen] = useState(false);
 
-  function handleToggleBottomSheetFilter() {
+  const handleToggleBottomSheetFilter = useCallback(() => {
     setIsBottomSheetFilterOpen((prev) => !prev);
-  }
+  }, []);
 
-  async function onRemoveFavoriteHero(hero: Hero) {
-    const favorites = favoriteHeroes?.filter(
-      (favorite) => favorite.id !== hero.id,
-    );
+  const onRemoveFavoriteHero = useCallback(
+    async (hero: Hero) => {
+      const favorites = favoriteHeroes?.filter(
+        (favorite) => favorite.id !== hero.id,
+      );
 
-    if (!favorites) {
-      return;
-    }
+      if (!favorites) {
+        return;
+      }
 
-    setFavoriteHeroes(favorites);
+      setFavoriteHeroes(favorites);
 
-    addFavoriteHeroes(favorites);
+      addFavoriteHeroes(favorites);
 
-    await queryClient.invalidateQueries({ queryKey: ['heroes'], exact: false });
-  }
+      await queryClient.invalidateQueries({
+        queryKey: ['heroes'],
+        exact: false,
+      });
+    },
+    [favoriteHeroes, queryClient],
+  );
 
-  function onAddFavoriteHero(hero: Hero) {
-    const favorites = favoriteHeroes ? [...favoriteHeroes, hero] : [hero];
+  const onAddFavoriteHero = useCallback(
+    (hero: Hero) => {
+      const favorites = favoriteHeroes ? [...favoriteHeroes, hero] : [hero];
 
-    setFavoriteHeroes(favorites);
+      setFavoriteHeroes(favorites);
 
-    addFavoriteHeroes(favorites);
-  }
+      addFavoriteHeroes(favorites);
+    },
+    [favoriteHeroes],
+  );
 
   useEffect(() => {
     setIsLoadingFavoriteHeroes(true);
