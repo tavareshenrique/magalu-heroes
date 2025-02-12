@@ -1,15 +1,29 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import * as heroLottie from '@/assets/lotties/hero-lottie.json';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useHeroes } from '@/context/HeroContext';
 
 import { HeroCard } from '../hero-card/hero-card';
 
+const EmptyData = dynamic(
+  () =>
+    import('@/components/animation-lottie/animation-lottie').then(
+      (mod) => mod.AnimationLottie,
+    ),
+  {
+    ssr: false,
+  },
+);
 export function FavoriteHeroes() {
   const [scrollIndex, setScrollIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(3);
+
+  const searchParams = useSearchParams();
 
   const {
     favoriteHeroes,
@@ -17,6 +31,8 @@ export function FavoriteHeroes() {
     onAddFavoriteHero,
     onRemoveFavoriteHero,
   } = useHeroes();
+
+  const onlyFavorites = searchParams?.get('onlyFavorites') ?? false;
 
   useEffect(() => {
     const updateItemsPerPage = () => {
@@ -56,6 +72,18 @@ export function FavoriteHeroes() {
         data-testid="loading-skeleton"
         className="h-[160px] rounded-2xl"
       />
+    );
+  }
+
+  if (onlyFavorites && (!favoriteHeroes || favoriteHeroes.length === 0)) {
+    return (
+      <div className="flex flex-col justify-center items-center h-full">
+        <EmptyData animationData={heroLottie} size={300} />
+
+        <p className="text-2xl mt-4 mb-8 text-sky-900 font-bold">
+          Nothing here...
+        </p>
+      </div>
     );
   }
 
