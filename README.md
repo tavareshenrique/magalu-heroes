@@ -222,6 +222,38 @@ Implemented CD using [Vercel](https://vercel.com/) to deploy the application aft
 
 > Application link: https://magalu-heroes.vercel.app/
 
+## ⚙️ Technologies Used
+
+* [Typescript](https://www.typescriptlang.org/)
+* [React](https://react.dev/)
+* [Next.js](https://nextjs.org/)
+* [Axios](https://github.com/axios/axios)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [Radix UI](https://www.radix-ui.com/)
+* [React Hook Form](https://react-hook-form.com/)
+* [Zod](https://github.com/colinhacks/zod)
+* [TanStack Query](https://tanstack.com/query/latest)
+* [Lucide React](https://lucide.dev/)
+* [React Lottie Player](https://github.com/mifi/react-lottie-player)
+* [React Modal Sheet](https://github.com/gerhardberger/react-modal-sheet)
+* [Next.js Top Loader](https://github.com/JoseRFelix/nextjs-toploader)
+* [Class Variance Authority](https://cva.style/)
+* [Clsx](https://github.com/lukeed/clsx)
+* [Crypto-JS](https://github.com/brix/crypto-js)
+* [Testing Library DOM](https://github.com/testing-library/dom-testing-library)
+* [Testing Library React](https://testing-library.com/docs/react-testing-library/intro/)
+* [Jest DOM](https://github.com/testing-library/jest-dom)
+* [Vitest](https://vitest.dev/)
+* [Playwright](https://playwright.dev/)
+* [ESLint](https://eslint.org/)
+* [Prettier](https://prettier.io/)
+* [Tailwind Variants](https://tailwindvariants.org/)
+* [Tailwind Merge](https://github.com/dcastil/tailwind-merge)
+* [Vite](https://vitejs.dev/)
+* [Vite TSConfig Paths](https://github.com/aleclarson/vite-tsconfig-paths)
+* [JSdom](https://github.com/jsdom/jsdom)
+* [Faker](https://fakerjs.dev/)
+
 ## 👣 Next Steps
 
 - [ ] Use URL State to save the page as well for better link sharing;
