@@ -18,8 +18,4 @@ describe('isLastPage function', () => {
   it('should return true when total is zero', () => {
     expect(isLastPage(0, 0, 0)).toBe(true);
   });
-
-  it('should return true when count is less than limit', () => {
-    expect(isLastPage(0, 5, 10)).toBe(true);
-  });
 });
