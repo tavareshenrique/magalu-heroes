@@ -69,7 +69,11 @@ export function AllComics({ heroId }: AllComicsProps) {
           ))}
         </div>
 
-        <SimplePagination page={page} setPage={setPage} isLastPage={false} />
+        <SimplePagination
+          page={page}
+          setPage={setPage}
+          isLastPage={data.isLastPage}
+        />
       </div>
 
       {selectedComic && <ComicDialog comic={selectedComic} />}
