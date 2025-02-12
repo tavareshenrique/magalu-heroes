@@ -52,7 +52,7 @@ export function Filter() {
     if (onlyFavorites !== newOnlyFavorites) {
       setValue('onlyFavorites', newOnlyFavorites);
     }
-  }, [searchParams]);
+  }, [getValues, searchParams, setValue]);
 
   function onSubmit(data: FilterValues) {
     const params = new URLSearchParams();
